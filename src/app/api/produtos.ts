@@ -45,17 +45,30 @@ router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
 // POST /produtos
 router.post("/", (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { descricao, valor, marca } = req.body;
+    const { descricao, preco, categoria, estoque } = req.body;
     console.log(`[POST] /produtos - criando produto: ${descricao}`);
 
-    if (!descricao || valor === undefined || !marca) {
+    if (
+      !descricao ||
+      preco === undefined ||
+      !categoria ||
+      estoque === undefined
+    ) {
       console.log(`[POST] /produtos - falhou: campos obrigatórios ausentes`);
-      throw new AppError("Campos obrigatórios: descricao, valor, marca", 400);
+      throw new AppError(
+        "Campos obrigatórios: descricao, preco, categoria, estoque",
+        400,
+      );
     }
 
-    if (typeof valor !== "number" || Number.isNaN(valor) || valor < 0) {
-      console.log(`[POST] /produtos - falhou: valor inválido`);
-      throw new AppError("Campo valor deve ser um número positivo", 400);
+    if (typeof preco !== "number" || Number.isNaN(preco) || preco < 0) {
+      console.log(`[POST] /produtos - falhou: preco inválido`);
+      throw new AppError("Campo preco deve ser um número positivo", 400);
+    }
+
+    if (typeof estoque !== "number" || Number.isNaN(estoque) || estoque < 0) {
+      console.log(`[POST] /produtos - falhou: estoque inválido`);
+      throw new AppError("Campo estoque deve ser um número positivo", 400);
     }
 
     const novoId =
@@ -66,8 +79,9 @@ router.post("/", (req: Request, res: Response, next: NextFunction) => {
     const novoProduto: Produto = {
       id: novoId,
       descricao,
-      valor,
-      marca,
+      preco,
+      categoria,
+      estoque,
     };
 
     db_produtos.produtos.push(novoProduto);
@@ -107,21 +121,30 @@ router.put("/:id", (req: Request, res: Response, next: NextFunction) => {
       throw new AppError("Produto não encontrado", 404);
     }
 
-    const { descricao, valor, marca } = req.body;
+    const { descricao, preco, categoria, estoque } = req.body;
 
     if (
-      valor !== undefined &&
-      (typeof valor !== "number" || Number.isNaN(valor) || valor < 0)
+      preco !== undefined &&
+      (typeof preco !== "number" || Number.isNaN(preco) || preco < 0)
     ) {
-      console.log(`[PUT] /produtos/${id} - falhou: valor inválido`);
-      throw new AppError("Campo valor deve ser um número positivo", 400);
+      console.log(`[PUT] /produtos/${id} - falhou: preco inválido`);
+      throw new AppError("Campo preco deve ser um número positivo", 400);
+    }
+
+    if (
+      estoque !== undefined &&
+      (typeof estoque !== "number" || Number.isNaN(estoque) || estoque < 0)
+    ) {
+      console.log(`[PUT] /produtos/${id} - falhou: estoque inválido`);
+      throw new AppError("Campo estoque deve ser um número positivo", 400);
     }
 
     const produtoAtualizado: Produto = {
       id,
       descricao: descricao ?? produtoExistente.descricao,
-      valor: valor ?? produtoExistente.valor,
-      marca: marca ?? produtoExistente.marca,
+      preco: preco ?? produtoExistente.preco,
+      categoria: categoria ?? produtoExistente.categoria,
+      estoque: estoque ?? produtoExistente.estoque,
     };
 
     db_produtos.produtos[index] = produtoAtualizado;

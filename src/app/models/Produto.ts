@@ -3,8 +3,9 @@
 export interface Produto {
   id: number;
   descricao: string;
-  valor: number;
-  marca: string;
+  preco: number;
+  categoria: string;
+  estoque: number;
 }
 
 export interface ProdutosDB {
