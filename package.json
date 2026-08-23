@@ -1,31 +1,35 @@
 {
-  "name": "diaw",
+  "name": "api-produtos",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API RESTful de Produtos desenvolvida com Node.js, Express e TypeScript",
+  "main": "src/server.ts",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
     "start": "tsx src/server.ts"
   },
-  "keywords": [],
+  "keywords": [
+    "api",
+    "rest",
+    "express",
+    "nodejs",
+    "typescript"
+  ],
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
-    "@types/node": "^26.2.0",
-    "ts-node-dev": "^2.0.0",
+    "@types/node": "^22.10.2",
     "tsx": "^4.23.12",
-    "typescript": "^7.0.2"
+    "typescript": "^5.7.2"
   },
   "dependencies": {
-    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "knex": "^3.3.0",
-    "pg": "^8.23.0"
+    "express": "^5.2.1"
   }
 }

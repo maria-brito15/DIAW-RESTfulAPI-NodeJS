@@ -13,6 +13,34 @@
       "preco": 89.9,
       "categoria": "Periféricos",
       "estoque": 25
+    },
+    {
+      "id": 3,
+      "descricao": "Monitor 24 polegadas",
+      "preco": 899.9,
+      "categoria": "Monitores",
+      "estoque": 8
+    },
+    {
+      "id": 4,
+      "descricao": "Headset Gamer",
+      "preco": 199.5,
+      "categoria": "Áudio",
+      "estoque": 12
+    },
+    {
+      "id": 5,
+      "descricao": "Webcam Full HD",
+      "preco": 149,
+      "categoria": "Periféricos",
+      "estoque": 20
+    },
+    {
+      "id": 6,
+      "descricao": "SSD 480GB",
+      "preco": 259.9,
+      "categoria": "Armazenamento",
+      "estoque": 30
     }
   ]
 }
