@@ -9,14 +9,14 @@
     },
     {
       "id": 2,
-      "descricao": "Mouse sem fio",
+      "descricao": "Mouse Wireless",
       "preco": 89.9,
       "categoria": "Periféricos",
       "estoque": 25
     },
     {
       "id": 3,
-      "descricao": "Monitor 24 polegadas",
+      "descricao": "Monitor 24'",
       "preco": 899.9,
       "categoria": "Monitores",
       "estoque": 8

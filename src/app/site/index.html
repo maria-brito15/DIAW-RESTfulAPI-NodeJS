@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciador de Produtos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Gerenciador de Produtos</h1>
+      </header>
+
+      <section class="card">
+        <h2 id="form-title">Novo Produto</h2>
+        <form id="produto-form">
+          <input type="hidden" id="produto-id" />
+
+          <div class="form-row">
+            <label for="descricao">Descrição</label>
+            <input
+              type="text"
+              id="descricao"
+              required
+              placeholder="Ex: Teclado mecânico"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="categoria">Categoria</label>
+            <input
+              type="text"
+              id="categoria"
+              required
+              placeholder="Ex: Periféricos"
+            />
+          </div>
+
+          <div class="form-row form-row-half">
+            <div>
+              <label for="preco">Preço (R$)</label>
+              <input
+                type="number"
+                id="preco"
+                step="0.01"
+                min="0"
+                required
+                placeholder="0.00"
+              />
+            </div>
+            <div>
+              <label for="estoque">Estoque</label>
+              <input
+                type="number"
+                id="estoque"
+                min="0"
+                required
+                placeholder="0"
+              />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="submit-btn">Adicionar Produto</button>
+            <button type="button" id="cancel-btn" class="secondary hidden">
+              Cancelar
+            </button>
+          </div>
+        </form>
+        <p id="form-msg" class="msg"></p>
+      </section>
+
+      <section class="card">
+        <div class="list-header">
+          <h2>Produtos</h2>
+          <button id="refresh-btn" class="secondary">Atualizar</button>
+        </div>
+        <div id="lista-produtos" class="lista">
+          <p class="loading">Carregando produtos...</p>
+        </div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
