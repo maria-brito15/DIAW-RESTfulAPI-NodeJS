@@ -9,6 +9,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const CAMINHO_JSON = join(__dirname, "produtos.json");
 
+// leitura/escrita em disco
+
 export function lerProdutos(): ProdutosDB {
   const conteudo = readFileSync(CAMINHO_JSON, "utf-8");
   return JSON.parse(conteudo) as ProdutosDB;
@@ -17,6 +19,8 @@ export function lerProdutos(): ProdutosDB {
 export function salvarProdutosNoArquivo(db: ProdutosDB): void {
   writeFileSync(CAMINHO_JSON, JSON.stringify(db, null, 2), "utf-8");
 }
+
+// estado em memória
 
 export const db_produtos: ProdutosDB = lerProdutos();
 
