@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrar - Gerenciador de Produtos</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="auth.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <section class="card auth-card">
+        <header class="auth-header">
+          <h1>Criar conta</h1>
+        </header>
+
+        <form id="register-form">
+          <div class="form-row">
+            <label for="usuario">Usuário</label>
+            <input
+              type="text"
+              id="usuario"
+              required
+              minlength="3"
+              autocomplete="username"
+              placeholder="Ex: joao"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="senha">Senha</label>
+            <input
+              type="password"
+              id="senha"
+              required
+              minlength="6"
+              autocomplete="new-password"
+              placeholder="Mínimo 6 caracteres"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="confirmar-senha">Confirmar senha</label>
+            <input
+              type="password"
+              id="confirmar-senha"
+              required
+              minlength="6"
+              autocomplete="new-password"
+              placeholder="Repita a senha"
+            />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="register-btn">Registrar</button>
+          </div>
+        </form>
+
+        <p id="register-msg" class="msg"></p>
+
+        <p class="auth-switch">
+          Já tem uma conta? <a href="/login">Entrar</a>
+        </p>
+      </section>
+    </div>
+
+    <script src="auth.js"></script>
+  </body>
+</html>

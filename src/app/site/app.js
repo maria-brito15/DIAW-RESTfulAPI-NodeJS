@@ -1,5 +1,7 @@
 const API_URL = "/produtos";
 
+// elementos
+
 const form = document.getElementById("produto-form");
 const idInput = document.getElementById("produto-id");
 const descricaoInput = document.getElementById("descricao");
@@ -14,6 +16,8 @@ const formMsg = document.getElementById("form-msg");
 
 const listaEl = document.getElementById("lista-produtos");
 const refreshBtn = document.getElementById("refresh-btn");
+
+// helpers
 
 function mostrarMensagem(texto, tipo) {
   formMsg.textContent = texto;
@@ -30,6 +34,8 @@ function mostrarMensagem(texto, tipo) {
 function formatarPreco(valor) {
   return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
+
+// modo de edicao do formulario
 
 function entrarModoEdicao(produto) {
   idInput.value = produto.id;
@@ -52,11 +58,19 @@ function sairModoEdicao() {
   cancelBtn.classList.add("hidden");
 }
 
+// carregamento e renderizacao da lista
+
 async function carregarProdutos() {
   listaEl.innerHTML = '<p class="loading">Carregando produtos...</p>';
 
   try {
-    const resp = await fetch(API_URL);
+    const resp = await fetch(API_URL, { credentials: "include" });
+
+    if (resp.status === 401) {
+      window.location.href = "/login";
+      return;
+    }
+
     if (!resp.ok) throw new Error("Falha ao buscar produtos");
 
     const produtos = await resp.json();
@@ -113,11 +127,21 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+// exclusao de produto
+
 async function excluirProduto(id) {
   if (!confirm("Tem certeza que deseja excluir este produto?")) return;
 
   try {
-    const resp = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+    const resp = await fetch(`${API_URL}/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    if (resp.status === 401) {
+      window.location.href = "/login";
+      return;
+    }
 
     if (!resp.ok) {
       const erro = await resp.json();
@@ -130,6 +154,8 @@ async function excluirProduto(id) {
     mostrarMensagem(err.message, "error");
   }
 }
+
+// envio do formulario (criacao e edicao)
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -148,8 +174,14 @@ form.addEventListener("submit", async (e) => {
     const resp = await fetch(editando ? `${API_URL}/${id}` : API_URL, {
       method: editando ? "PUT" : "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify(dados),
     });
+
+    if (resp.status === 401) {
+      window.location.href = "/login";
+      return;
+    }
 
     const resultado = await resp.json();
 
@@ -170,6 +202,8 @@ form.addEventListener("submit", async (e) => {
     mostrarMensagem(err.message, "error");
   }
 });
+
+// eventos e inicializacao
 
 cancelBtn.addEventListener("click", sairModoEdicao);
 refreshBtn.addEventListener("click", carregarProdutos);

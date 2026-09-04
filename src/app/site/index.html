@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerenciador de Produtos</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="auth.css" />
   </head>
   <body>
+    <div class="top-bar">
+      <a href="/home">&larr; Início</a>
+      <a href="#" id="logout-link">Sair</a>
+    </div>
     <div class="container">
       <header>
         <h1>Gerenciador de Produtos</h1>
@@ -83,5 +88,20 @@
     </div>
 
     <script src="app.js"></script>
+    <script>
+      document
+        .getElementById("logout-link")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
+          try {
+            await fetch("/auth/logout", {
+              method: "POST",
+              credentials: "include",
+            });
+          } finally {
+            window.location.href = "/login";
+          }
+        });
+    </script>
   </body>
 </html>

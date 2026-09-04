@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Gerenciador de Produtos</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="auth.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <section class="card auth-card">
+        <header class="auth-header">
+          <h1>Entrar</h1>
+        </header>
+
+        <form id="login-form">
+          <div class="form-row">
+            <label for="usuario">Usuário</label>
+            <input
+              type="text"
+              id="usuario"
+              required
+              autocomplete="username"
+              placeholder="Ex: admin"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="senha">Senha</label>
+            <input
+              type="password"
+              id="senha"
+              required
+              autocomplete="current-password"
+              placeholder="••••••"
+            />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="login-btn">Entrar</button>
+          </div>
+        </form>
+
+        <p id="login-msg" class="msg"></p>
+
+        <p class="auth-switch">
+          Não tem uma conta? <a href="/register">Registrar</a>
+        </p>
+      </section>
+    </div>
+
+    <script src="auth.js"></script>
+  </body>
+</html>
